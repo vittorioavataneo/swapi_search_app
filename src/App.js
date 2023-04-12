@@ -7,12 +7,14 @@ import PeopleList from './PeopleList'
 function App() {
   const[people, setPeople] = useState([]);
   const[page, setPage] = useState(1);
-  const [term, setTerm] = useState('');
+  const[term, setTerm] = useState('');
+  const[tableCreation, setTableCreation] = useState(false);
 
   const handleSubmit = async (newTerm) => {
     const results = await searchPeople(newTerm, 1);
     setPeople(results);
     setTerm(newTerm);
+    setTableCreation(true);
   };
 
   const handleNextPage = async () => {
@@ -24,8 +26,12 @@ function App() {
   return (
     <section>
       <SearchBar onSubmit={handleSubmit}/>
-      <PeopleList people={people}/>
-      <button onClick={handleNextPage}>Next Page</button>
+      {tableCreation && (
+        <>
+          <PeopleList people={people}/>
+          <button onClick={handleNextPage}>Next Page</button>
+        </>
+      )}
     </section>
   );
 }
