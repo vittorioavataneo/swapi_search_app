@@ -11,7 +11,7 @@ function App() {
   const[tableCreation, setTableCreation] = useState(false);
 
   const handleSubmit = async (newTerm) => {
-    const results = await searchPeople(newTerm, 1);
+    const results = await searchPeople(newTerm, page);
     setPeople(results);
     setTerm(newTerm);
     setTableCreation(true);
