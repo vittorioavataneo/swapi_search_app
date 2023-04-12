@@ -18,7 +18,6 @@ function SearchBar({ onSubmit }) {
       <form onSubmit={handleFormSubmit}>
         <label> Search your favorite Jedi </label>
         <input value={term} onChange={handleChange} />
-        <button>Next page</button>
       </form>
     </div>
   );
