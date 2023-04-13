@@ -1,3 +1,4 @@
+import './people.css';
 
 function PeopleShow({person}){
 

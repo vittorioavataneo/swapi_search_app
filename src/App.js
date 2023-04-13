@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import './App.css';
 import SearchBar from './SearchBar';
 import searchPeople from './api'
@@ -11,7 +11,7 @@ function App() {
   const[tableCreation, setTableCreation] = useState(false);
 
   const handleSubmit = async (newTerm) => {
-    const results = await searchPeople(newTerm, page);
+    const results = await searchPeople(newTerm, 1);
     setPeople(results);
     setTerm(newTerm);
     setTableCreation(true);
@@ -28,8 +28,8 @@ function App() {
       <SearchBar onSubmit={handleSubmit}/>
       {tableCreation && (
         <>
-          <PeopleList people={people}/>
           <button onClick={handleNextPage}>Next Page</button>
+          <PeopleList people={people}/>
         </>
       )}
     </section>

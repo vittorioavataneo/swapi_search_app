@@ -1,9 +1,12 @@
 import PeopleShow from "./PeopleShow";
+import './people.css';
 
 function PeopleList({people}){
+
     const peopleShown = people.map((person) => {
         return <PeopleShow key={person.id} person={person}/>;
     });
+
     return <div className="people-list">
                 <table>
                     <thead>
