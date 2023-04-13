@@ -31,18 +31,23 @@ function App() {
     setPage(page + 1);
   };
 
+  const handlePreviousPage = async () => {
+    const results = await searchPeople(term, page - 1);
+    setPeople(results);
+    setPage(page - 1);
+  };
+
   return (
     <section>
       <SearchBar onSubmit={handleSubmit}/>
+      {page>1 && <button onClick={handlePreviousPage}>Previous Page</button>}
       {tableCreation && (
         <>
           <button onClick={handleNextPage}>Next Page</button>
           <PeopleList people={people}/>
         </>
       )}
-      {noResults && (
-        <p className='not-found'>No results found!</p>
-      )}
+      {noResults && <p className='not-found'>No results found!</p>}
     </section>
   );
 }
