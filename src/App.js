@@ -9,12 +9,20 @@ function App() {
   const[page, setPage] = useState(1);
   const[term, setTerm] = useState('');
   const[tableCreation, setTableCreation] = useState(false);
+  const[noResults, setNoResults] = useState(false);
 
   const handleSubmit = async (newTerm) => {
     const results = await searchPeople(newTerm, 1);
-    setPeople(results);
-    setTerm(newTerm);
-    setTableCreation(true);
+    if(results.length > 0){
+      setPeople(results);
+      setTerm(newTerm);
+      setTableCreation(true);
+      setNoResults(false);
+      setPage(1);
+    }else{
+      setTableCreation(false)
+      setNoResults(true);
+    }
   };
 
   const handleNextPage = async () => {
@@ -31,6 +39,9 @@ function App() {
           <button onClick={handleNextPage}>Next Page</button>
           <PeopleList people={people}/>
         </>
+      )}
+      {noResults && (
+        <p className='not-found'>No results found!</p>
       )}
     </section>
   );

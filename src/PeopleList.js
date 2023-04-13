@@ -24,6 +24,7 @@ function PeopleList({people}){
                     <tbody>{peopleShown}</tbody>
                 </table>
             </div>
+   
 }
 
 export default PeopleList;
